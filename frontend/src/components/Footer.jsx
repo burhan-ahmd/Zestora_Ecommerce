@@ -11,7 +11,7 @@ function Footer() {
         <div className="footer-brand">
 
           <h2>
-            NOVA
+            Zestora
           </h2>
 
           <p>
@@ -107,7 +107,7 @@ function Footer() {
       <div className="container footer-bottom">
 
         <p>
-          © 2026 NOVA. All rights reserved.
+          © 2026 Zestora. All rights reserved.
         </p>
 
         <p>
