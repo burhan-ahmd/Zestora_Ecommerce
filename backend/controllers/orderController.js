@@ -1,5 +1,7 @@
 import Order from "../models/Order.js";
 import Product from "../models/Products.js";
+import User from "../models/User.js";
+import sendEmail from "../utils/sendEmail.js";
 
 const createOrder = async (req, res) => {
   try {
@@ -76,6 +78,55 @@ const createOrder = async (req, res) => {
       shipping,
       total,
     });
+
+    const customer = await User.findById(req.user).select("name email");
+    const admin = await User.findOne({ type: "admin" }).select("name email");
+
+    const itemsList = orderItems
+      .map((item) => `<li>${item.name} x ${item.quantity} — $${(item.price * item.quantity).toFixed(2)}</li>`)
+      .join("");
+
+    const address = [shippingAddress.address, shippingAddress.apartment, shippingAddress.city, shippingAddress.state, shippingAddress.postalCode].filter(Boolean).join(", ");
+
+    if (customer?.email) {
+      sendEmail({
+        to: customer.email,
+        subject: `Order Confirmation - #${order._id}`,
+        html: `
+          <h2>Thank you for your order, ${customer.name}!</h2>
+          <p><strong>Order ID:</strong> ${order._id}</p>
+          <p><strong>Items:</strong></p>
+          <ul>${itemsList}</ul>
+          <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+          <p><strong>Shipping:</strong> $${shipping.toFixed(2)}</p>
+          <p><strong>Total:</strong> $${total.toFixed(2)}</p>
+          <p><strong>Shipping Address:</strong> ${address}</p>
+          <p><strong>Payment Method:</strong> ${order.paymentMethod.toUpperCase()}</p>
+          <br/>
+          <p>We'll notify you when your order ships.</p>
+          <p>— Zestora Team</p>
+        `,
+      }).catch((err) => console.error("Customer email error:", err.message));
+    }
+
+    if (admin?.email) {
+      sendEmail({
+        to: admin.email,
+        subject: `New Order Received - #${order._id}`,
+        html: `
+          <h2>New order placed!</h2>
+          <p><strong>Customer:</strong> ${customer?.name || "Unknown"} (${customer?.email || "N/A"})</p>
+          <p><strong>Order ID:</strong> ${order._id}</p>
+          <p><strong>Items:</strong></p>
+          <ul>${itemsList}</ul>
+          <p><strong>Total:</strong> $${total.toFixed(2)}</p>
+          <p><strong>Shipping Address:</strong> ${address}</p>
+          <p><strong>Payment:</strong> ${order.paymentMethod.toUpperCase()}</p>
+          <br/>
+          <p>— Zestora System</p>
+        `,
+      }).catch((err) => console.error("Admin email error:", err.message));
+    }
 
     res.status(201).json({
       message: "Order placed successfully",
