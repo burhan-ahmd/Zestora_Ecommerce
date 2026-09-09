@@ -87,8 +87,8 @@ Frontend runs on `http://localhost:5173`, backend on `http://localhost:4000`.
 
 | Field | Value |
 |-------|-------|
-| Email | burrnboy18@gmail.com |
-| Password | Allah786*0 |
+| Email | put_yours_in_seed.js_file |
+| Password | put_yours_in_seed.js_file |
 
 ## API Endpoints
 
