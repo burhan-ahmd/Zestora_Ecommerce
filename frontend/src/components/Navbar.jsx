@@ -42,7 +42,7 @@ const Navbar = ({ onToggleSidebar }) => {
             className="logo"
             onClick={handleNavClick}
           >
-            NOVA
+            Zestora
           </Link>
         </div>
 
