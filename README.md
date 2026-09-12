@@ -6,7 +6,7 @@ A full-stack ecommerce application built with the MERN stack (MongoDB, Express.j
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | Node.js, Express.js, Mongoose, JWT, bcryptjs |
+| Backend | Node.js, Express.js, Mongoose, JWT, bcryptjs, Nodemailer |
 | Frontend | React 19, Vite, React Router 7, Axios |
 | Database | MongoDB (Atlas) |
 | Styling | Custom CSS Design System |
