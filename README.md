@@ -20,6 +20,7 @@ A full-stack ecommerce application built with the MERN stack (MongoDB, Express.j
 - **Advanced Filtering** — Search, category, price range, rating, sort, pagination (server-side)
 - **Shopping Cart** — localStorage-persisted, stock-aware quantity controls
 - **Checkout** — Shipping address, payment method (COD/Card), stock validation
+- **Email** — Email template, new order placement send to admin, user also get order placement on its email 
 - **Order Management** — Status workflow (pending → confirmed → shipped → delivered), auto payment update
 - **Admin Dashboard** — Stats cards, recent orders, quick actions
 - **Responsive Design** — Mobile-friendly sidebar, hamburger menu, adaptive layouts
@@ -66,6 +67,8 @@ npm install
 echo "MONGO_URI=your_mongodb_uri" >> .env
 echo "PORT=4000" >> .env
 echo "JWT_SECRET=your_secret_key" >> .env
+echo "EMAIL_USER=your_email" >> .env
+echo "EMAIL_PASS=your_email_app_pass" >> .env
 
 # Seed admin user
 npm run seed
