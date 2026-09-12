@@ -2,6 +2,9 @@
 
 A full-stack ecommerce application built with the MERN stack (MongoDB, Express.js, React, Node.js). Practice project featuring admin and customer roles, product management, shopping cart, and order processing.
 
+<img width="953" height="446" alt="Screenshot 2026-09-12 124023" src="https://github.com/user-attachments/assets/e193ffbc-8143-4f35-b081-caf162291cf8" />
+
+
 ## Tech Stack
 
 | Layer | Technology |
