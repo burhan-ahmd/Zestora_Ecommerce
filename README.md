@@ -117,4 +117,4 @@ Frontend runs on `http://localhost:5173`, backend on `http://localhost:4000`.
 
 ## License
 
-MIT
+MIT License
